@@ -53,7 +53,7 @@ public class Controller implements Initializable {
             );
 
             TreeItem<String> cronosL = new TreeItem<>("Cronos L");
-            cronosL.getChildren().addAll(
+            cronosL .getChildren().addAll(
                     new TreeItem<>("Cronos 6021L"),
                     new TreeItem<>("Cronos 7023L")
             );
