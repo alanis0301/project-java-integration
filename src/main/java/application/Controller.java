@@ -28,19 +28,26 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configureInitialState();
+        configureCombo();
+    }
 
+    private void configureInitialState() {
         paneModels.setDisable(true);
+    }
 
+    private void configureCombo() {
         comboLines.getItems().addAll(Line.values());
+        comboLines.setOnAction(event -> lineSelection());
+    }
 
-        comboLines.setOnAction(event -> {
-            Line line = comboLines.getValue();
+    private void lineSelection() {
+        Line line = comboLines.getValue();
 
-            if (line != null) {
-                paneModels.setDisable(false);
-                loadTree(line);
-            }
-        });
+        if (line != null) {
+            paneModels.setDisable(false);
+            loadTree(line);
+        }
     }
 
     private void loadTree(Line line) {
