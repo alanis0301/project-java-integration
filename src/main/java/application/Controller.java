@@ -27,12 +27,10 @@ public class Controller implements Initializable {
     @FXML
     private TitledPane paneModels;
 
-    private LineController lineController;
+    private LineController lineController = new LineController();;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lineController = new LineController();
-
         configureInitialState();
         configureCombo();
     }
