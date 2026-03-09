@@ -1,5 +1,6 @@
 package application;
 
+import controllers.LineController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -10,7 +11,6 @@ import javafx.scene.control.TitledPane;
 import models.Line;
 import models.Category;
 import models.Model;
-import controllers.BackEndController;
 
 import java.net.URL;
 import java.util.List;
@@ -27,11 +27,11 @@ public class Controller implements Initializable {
     @FXML
     private TitledPane paneModels;
 
-    private BackEndController backEndController;
+    private LineController lineController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        backEndController = new BackEndController();
+        lineController = new LineController();
 
         configureInitialState();
         configureCombo();
@@ -42,7 +42,7 @@ public class Controller implements Initializable {
     }
 
     private void configureCombo() {
-        List<Line> lines = backEndController.getLines();
+        List<Line> lines = lineController.loadLines();
 
         comboLines.getItems().addAll(lines);
     }
