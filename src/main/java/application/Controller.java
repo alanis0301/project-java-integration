@@ -1,6 +1,6 @@
 package application;
 
-import controllers.LineController;
+import controllers.LineRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -27,7 +27,7 @@ public class Controller implements Initializable {
     @FXML
     private TitledPane paneModels;
 
-    private LineController lineController = new LineController();;
+    private LineRepository lineRepository = new LineRepository();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,7 +40,7 @@ public class Controller implements Initializable {
     }
 
     private void configureCombo() {
-        List<Line> lines = lineController.loadLines();
+        List<Line> lines = lineRepository.loadLines();
 
         comboLines.getItems().addAll(lines);
     }
