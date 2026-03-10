@@ -1,5 +1,6 @@
 package application;
 
+import controllers.LineRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -11,8 +12,8 @@ import models.Line;
 import models.Category;
 import models.Model;
 
-
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -26,6 +27,8 @@ public class Controller implements Initializable {
     @FXML
     private TitledPane paneModels;
 
+    private LineRepository lineRepository = new LineRepository();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configureInitialState();
@@ -37,11 +40,13 @@ public class Controller implements Initializable {
     }
 
     private void configureCombo() {
-        comboLines.getItems().addAll(Line.values());
-        comboLines.setOnAction(event -> lineSelection());
+        List<Line> lines = lineRepository.loadLines();
+
+        comboLines.getItems().addAll(lines);
     }
 
-    private void lineSelection() {
+    @FXML
+    private void onLineSelect() {
         Line line = comboLines.getValue();
 
         if (line != null) {
@@ -51,22 +56,19 @@ public class Controller implements Initializable {
     }
 
     private void loadTree(Line line) {
-
         TreeItem<String> root = new TreeItem<>("Categorias");
         root.setExpanded(true);
 
         for (Category category : line.getCategories()) {
-
-            TreeItem<String> categoryItem = new TreeItem<>(category.getName());
+            TreeItem<String> categoryItem =
+                    new TreeItem<>(category.getName());
 
             for (Model model : category.getModels()) {
                 categoryItem.getChildren()
                         .add(new TreeItem<>(model.getName()));
             }
-
             root.getChildren().add(categoryItem);
         }
-
         treeModels.setRoot(root);
     }
 }

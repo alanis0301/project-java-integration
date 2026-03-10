@@ -18,8 +18,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ComboBox id="comboLines" fx:id="comboLines" layoutX="144.0" layoutY="19.0" prefWidth="150.0" />
-                        <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione uma linha:" />
+                         <ComboBox fx:id="comboLines" onAction="#onLineSelect" layoutX="144.0" layoutY="19.0" prefWidth="150.0" />                        <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione uma linha:" />
                      </children>
                   </AnchorPane>
             </content>
