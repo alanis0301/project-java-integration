@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>untitled1</artifactId>
+    <artifactId>project-java-integration</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -35,25 +35,27 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.8.3</version>
                 <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>application.Main</mainClass>
-                        </manifest>
-                    </archive>
+                    <mainClass>application.Main</mainClass>
+                    <appName>project-java-integration</appName>
+                    <vendor>Roberta Alanis Andrade Nogueira</vendor>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
+                        <id>create-jar</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>build-jar</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-native</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build-native</goal>
                         </goals>
                     </execution>
                 </executions>
