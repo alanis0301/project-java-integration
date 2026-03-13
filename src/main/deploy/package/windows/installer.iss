@@ -39,8 +39,8 @@ Source: "{#ProjectDir}\target\jfx\native\*"; DestDir: "{app}"; Flags: ignorevers
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe"; IconFilename: "logo_eletra.ico";
-Name: "{userdesktop}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe";IconFilename: "logo_eletra.ico";
+Name: "{group}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe"; IconFilename: "project-java-integration.ico";
+Name: "{userdesktop}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe";IconFilename: "project-java-integration.ico";
 
 [Run] 
 Filename: "{app}\project-java-integration-1.0.exe"; Parameters: "-install -svcName ""project-java-integration"" -svcDesc ""project-java-integration"" -mainExe ""project-java-integration-1.0.exe""";
