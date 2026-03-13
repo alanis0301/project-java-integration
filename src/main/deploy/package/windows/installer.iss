@@ -20,7 +20,8 @@ LicenseFile={#ProjectDir}\LICENSE.txt
 ; Remove the following line to run in administrative install mode (install for all users).
 PrivilegesRequired=lowest
 OutputBaseFilename=project-java-integration
-SetupIconFile=logo_eletra.ico
+SetupIconFile=project-java-integration.ico
+UninstallDisplayIcon=project-java-integration.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern dynamic
@@ -33,13 +34,13 @@ Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortugue
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#ProjectDir}\target\jfx\native\project-java-integration-1.0.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#ProjectDir}\target\jfx\native\project-java-integration-1.0.exe"; DestDir: "{app}"; Flags: ignoreversion; 
 Source: "{#ProjectDir}\target\jfx\native\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe" 
-Name: "{userdesktop}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe";IconFilename: "{app}\logo_eletra.ico";
+Name: "{group}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe"; IconFilename: "logo_eletra.ico";
+Name: "{userdesktop}\project-java-integration"; Filename: "{app}\project-java-integration-1.0.exe";IconFilename: "logo_eletra.ico";
 
 [Run] 
 Filename: "{app}\project-java-integration-1.0.exe"; Parameters: "-install -svcName ""project-java-integration"" -svcDesc ""project-java-integration"" -mainExe ""project-java-integration-1.0.exe""";
