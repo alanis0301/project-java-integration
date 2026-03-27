@@ -3,6 +3,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .kotlin
+*.exe
+!**/src/main/deploy/package/windows/Output/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
