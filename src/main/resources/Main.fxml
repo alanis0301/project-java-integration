@@ -18,17 +18,17 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ComboBox fx:id="comboLinhas" layoutX="144.0" layoutY="19.0" prefWidth="150.0" />
+                        <ComboBox fx:id="comboLines" layoutX="144.0" layoutY="19.0" prefWidth="150.0" />
                         <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione uma linha:" />
                      </children>
                   </AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane fx:id="paneModelos" animated="false" disable="true" text="Modelos">
+          <TitledPane fx:id="paneModels" animated="false" disable="true" text="Modelos">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TreeView fx:id="treeModelos" layoutX="127.0" layoutY="3.0" prefHeight="200.0" prefWidth="200.0" />
+                        <TreeView fx:id="treeModels" layoutX="127.0" layoutY="3.0" prefHeight="200.0" prefWidth="200.0" />
                         <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de modelos:" />
                      </children>
                   </AnchorPane>
