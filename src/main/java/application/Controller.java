@@ -7,9 +7,10 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.TitledPane;
 
-import models.Line;
-import models.Category;
-import models.Model;
+import dtos.LineDTO;
+import dtos.ModelDTO;
+import dtos.CategoryDTO;
+
 import services.ApiLineService;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    private ComboBox<Line> comboLines;
+    private ComboBox<LineDTO> comboLines;
 
     @FXML
     private TreeView<String> treeModels;
@@ -28,7 +29,7 @@ public class Controller implements Initializable {
     @FXML
     private TitledPane paneModels;
 
-    private ApiLineService apiLineService = new ApiLineService();
+    private final ApiLineService apiLineService = new ApiLineService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,8 +44,8 @@ public class Controller implements Initializable {
 
     public void configureCombo(){
         try {
-            List<Line> lines = apiLineService.getLines();
-            comboLines.getItems().addAll(lines);
+            List<LineDTO> linesDTO = apiLineService.getLines();
+            comboLines.getItems().addAll(linesDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +54,7 @@ public class Controller implements Initializable {
     public void configureComboEvent(){
         comboLines.setOnAction(event -> {
 
-        Line line = comboLines.getValue();
+        LineDTO line = comboLines.getValue();
 
         if (line != null) {
             paneModels.setDisable(false);
@@ -62,15 +63,15 @@ public class Controller implements Initializable {
     });
     }
 
-    private void loadTree(Line line) {
+    private void loadTree(LineDTO line) {
 
         TreeItem<String> root = new TreeItem<>("Categorias");
         root.setExpanded(true);
 
-        for (Category category : line.getCategories()) {
+        for (CategoryDTO category : line.getCategories()) {
             TreeItem<String> categoryItem =
                     new TreeItem<>(category.getName());
-            for (Model model : category.getModels()) {
+            for (ModelDTO model : category.getModels()) {
                 categoryItem.getChildren()
                         .add(new TreeItem<>(model.getName()));
             }

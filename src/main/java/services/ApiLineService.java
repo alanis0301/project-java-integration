@@ -1,31 +1,24 @@
 package services;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import models.Line;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import dtos.LineDTO;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+@Service
 public class ApiLineService {
 
-    private final OkHttpClient client = new OkHttpClient();
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final String BASE_URL = "http://localhost:8080/api/lines";
 
-    public List<Line> getLines() throws Exception {
-
-        Request request = new Request.Builder()
-                .url("http://localhost:8080/api/lines")
-                .build();
-
-        Response response = client.newCall(request).execute();
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.readValue(
-                response.body().string(),
-                new TypeReference<List<Line>>() {}
-        );
+    public List<LineDTO> getLines(){
+        ResponseEntity<List<LineDTO>> response = restTemplate.exchange(BASE_URL, HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<LineDTO>>() {});
+        return response.getBody();
     }
+
 }

@@ -1,5 +1,8 @@
 package models;
 
+import dtos.CategoryDTO;
+import org.springframework.beans.BeanUtils;
+
 import java.util.List;
 
 public class Category {
@@ -7,6 +10,10 @@ public class Category {
     private int id;
     private String name;
     private List<Model> models;
+
+    public Category(){
+
+    }
 
     public int getId() {
         return id;

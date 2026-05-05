@@ -1,17 +1,22 @@
-package models;
+package dtos;
 
-import dtos.LineDTO;
+import models.Category;
+
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 
-public class Line {
+public class CategoryDTO {
 
     private int id;
     private String name;
-    private List<Category> categories;
+    private List<ModelDTO> models;
 
-    public Line(){
+    public CategoryDTO(Category category){
+        BeanUtils.copyProperties(category, this);
+    }
+
+    public CategoryDTO(){
 
     }
 
@@ -31,16 +36,12 @@ public class Line {
         this.name = name;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<ModelDTO> getModels() {
+        return models;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setModels(List<ModelDTO> models) {
+        this.models = models;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }
