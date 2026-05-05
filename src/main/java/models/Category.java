@@ -1,8 +1,5 @@
 package models;
 
-import dtos.CategoryDTO;
-import org.springframework.beans.BeanUtils;
-
 import java.util.List;
 
 public class Category {

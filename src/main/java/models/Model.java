@@ -1,7 +1,5 @@
 package models;
 
-import dtos.ModelDTO;
-import org.springframework.beans.BeanUtils;
 
 public class Model {
 
