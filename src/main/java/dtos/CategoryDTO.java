@@ -1,7 +1,5 @@
 package dtos;
 
-import models.Category;
-
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -11,14 +9,6 @@ public class CategoryDTO {
     private int id;
     private String name;
     private List<ModelDTO> models;
-
-    public CategoryDTO(Category category){
-        BeanUtils.copyProperties(category, this);
-    }
-
-    public CategoryDTO(){
-
-    }
 
     public int getId() {
         return id;

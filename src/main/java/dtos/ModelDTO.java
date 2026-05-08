@@ -1,19 +1,10 @@
 package dtos;
 
-import models.Model;
 import org.springframework.beans.BeanUtils;
 
 public class ModelDTO {
     private int id;
     private String name;
-
-    public ModelDTO(Model model){
-        BeanUtils.copyProperties(model, this);
-    }
-
-    public ModelDTO(){
-
-    }
 
     public int getId() {
         return id;

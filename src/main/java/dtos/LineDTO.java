@@ -1,6 +1,5 @@
 package dtos;
 
-import models.Line;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -9,14 +8,6 @@ public class LineDTO {
     private int id;
     private String name;
     private List<CategoryDTO> categories;
-
-    public LineDTO(Line line){
-        BeanUtils.copyProperties(line, this);
-    }
-
-    public LineDTO(){
-
-    }
 
     public int getId() {
         return id;
