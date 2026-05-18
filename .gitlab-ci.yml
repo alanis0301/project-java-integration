@@ -1,0 +1,51 @@
+variables: 
+  MAVEN_OPTS: "-Dmaven.repo.local=C:\\maven_cache\\repository"
+
+default:
+  tags:
+    - test-runner
+
+stages:
+  - clonar-backend
+  - package-frontend
+  - package-backend
+  - run
+
+clonar-backend:
+  stage: clonar-backend
+  script: 
+    - git clone -b feature/projeto04 https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/alanis0301/project-java-back-end.git
+  artifacts:
+    paths:
+      - project-java-back-end/  
+    expire_in: 1 hour
+
+package-backend:
+  stage: package-backend
+  dependencies:
+    - clonar-backend 
+  script:
+    - cd project-java-back-end  
+    - mvn clean install 
+  artifacts:
+    paths:
+      - project-java-back-end/target/project-java-back-end-2-1.0-SNAPSHOT.jar
+
+package-frontend:
+  stage: package-frontend
+  script:
+    - mvn clean package
+  artifacts:
+    paths: 
+      - target/jfx/native/project-java-integration.exe
+
+run:
+  stage: run
+  timeout: 1h
+  dependencies:
+    - package-backend
+    - package-frontend
+  script:
+    - cd project-java-back-end/target
+    - java -jar project-java-back-end-2-1.0-SNAPSHOT.jar
+
