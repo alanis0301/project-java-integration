@@ -9,6 +9,12 @@ public class LineDTO {
     private String name;
     private List<CategoryDTO> categories;
 
+    public LineDTO(int id, String name, List<CategoryDTO> categories) {
+        this.id = id;
+        this.name = name;
+        this.categories = categories;
+    }
+
     public int getId() {
         return id;
     }

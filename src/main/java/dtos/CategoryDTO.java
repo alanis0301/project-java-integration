@@ -10,6 +10,12 @@ public class CategoryDTO {
     private String name;
     private List<ModelDTO> models;
 
+    public CategoryDTO(int id, String name, List<ModelDTO> models){
+        this.id= id;
+        this.name = name;
+        this.models = models;
+    }
+
     public int getId() {
         return id;
     }
