@@ -11,6 +11,10 @@ public class ModelDTO {
         this.name = name;
     }
 
+    public ModelDTO(){
+
+    }
+
     public int getId() {
         return id;
     }

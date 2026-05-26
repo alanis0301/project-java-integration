@@ -16,6 +16,10 @@ public class CategoryDTO {
         this.models = models;
     }
 
+    public CategoryDTO(){
+
+    }
+
     public int getId() {
         return id;
     }

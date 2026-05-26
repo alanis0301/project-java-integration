@@ -15,6 +15,10 @@ public class LineDTO {
         this.categories = categories;
     }
 
+    public LineDTO(){
+
+    }
+
     public int getId() {
         return id;
     }

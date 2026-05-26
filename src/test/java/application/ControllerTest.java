@@ -1,6 +1,5 @@
-package com.application.controller;
+package application;
 
-import application.Controller;
 import dtos.CategoryDTO;
 import dtos.LineDTO;
 import dtos.ModelDTO;
@@ -11,7 +10,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.testfx.framework.junit.ApplicationTest;
 import services.ApiLineService;
 
@@ -24,28 +22,15 @@ import static org.mockito.Mockito.*;
 public class ControllerTest extends ApplicationTest {
 
     private Controller controller;
-    private ApiLineService apiLineService;
-
-    private ComboBox<LineDTO> comboLines;
-    private TreeView<String> treeModels;
-    private TitledPane paneModels;
 
     @Before
     public void setUp() {
-        comboLines = new ComboBox<>();
-        treeModels = new TreeView<>();
-        paneModels = new TitledPane();
+        controller = spy(Controller.class);
 
-        apiLineService = mock(ApiLineService.class);
-
-        Controller realController = new Controller();
-
-        ReflectionTestUtils.setField(realController, "comboLines", comboLines); //pega o controller, invade os componentes do controller (privados) e coloca os componentes criados nesse teste lá dentro
-        ReflectionTestUtils.setField(realController, "treeModels", treeModels);
-        ReflectionTestUtils.setField(realController, "paneModels", paneModels);
-        ReflectionTestUtils.setField(realController, "apiLineService", apiLineService);
-
-        controller = spy(realController);
+        controller.comboLines = new ComboBox<>();
+        controller.treeModels = new TreeView<>();
+        controller.paneModels = new TitledPane();
+        controller.apiLineService = mock(ApiLineService.class);
     }
 
     @Test
@@ -63,11 +48,11 @@ public class ControllerTest extends ApplicationTest {
 
     @Test
     public void testConfigureInitialState() {
-        paneModels.setDisable(false);
+        controller.paneModels.setDisable(false);
 
         controller.configureInitialState();
 
-        assertTrue(paneModels.isDisable());
+        assertTrue(controller.paneModels.isDisable());
     }
 
     @Test
@@ -77,26 +62,27 @@ public class ControllerTest extends ApplicationTest {
         LineDTO lineDTO = new LineDTO(1, "Line1", Arrays.asList(categoryDTO));
         List<LineDTO> mockedLines = Arrays.asList(lineDTO);
 
-        when(apiLineService.getLines()).thenReturn(mockedLines);
+        when(controller.apiLineService.getLines()).thenReturn(mockedLines);
 
         controller.configureCombo();
 
-        assertEquals(1, comboLines.getItems().size());
-        assertEquals( "Line1", comboLines.getItems().get(0).getName());
 
-        verify(apiLineService).getLines();
+        assertEquals(1, controller.comboLines.getItems().size());
+        assertEquals( "Line1", controller.comboLines.getItems().get(0).getName());
+
+        verify(controller.apiLineService).getLines();
     }
 
     @Test
     public void testConfigureComboException() throws Exception {
-        when(apiLineService.getLines()).thenThrow(new RuntimeException());
+        when(controller.apiLineService.getLines()).thenThrow(new RuntimeException());
 
         controller.configureCombo();
 
-        assertNotNull(comboLines.getItems());
-        assertEquals(0, comboLines.getItems().size());
+        assertNotNull(controller.comboLines.getItems());
+        assertEquals(0, controller.comboLines.getItems().size());
 
-        verify(apiLineService).getLines();
+        verify(controller.apiLineService).getLines();
     }
 
     @Test
@@ -107,16 +93,16 @@ public class ControllerTest extends ApplicationTest {
 
         controller.configureComboEvent();
 
-        paneModels.setDisable(true);
+        controller.paneModels.setDisable(true);
 
-        comboLines.getItems().add(lineDTO);
-        comboLines.setValue(lineDTO);
+        controller.comboLines.getItems().add(lineDTO);
+        controller.comboLines.setValue(lineDTO);
 
-        comboLines.getOnAction().handle(new ActionEvent());
+        controller.comboLines.getOnAction().handle(new ActionEvent());
 
-        assertFalse(paneModels.isDisable());
+        assertFalse(controller.paneModels.isDisable());
 
-        TreeItem<String> root = treeModels.getRoot();
+        TreeItem<String> root = controller.treeModels.getRoot();
         assertNotNull(root);
         assertEquals("Categorias", root.getValue());
 

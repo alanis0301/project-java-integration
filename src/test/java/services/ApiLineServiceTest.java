@@ -1,4 +1,4 @@
-package com.application.service;
+package services;
 
 import dtos.CategoryDTO;
 import dtos.LineDTO;
@@ -9,9 +9,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
-import services.ApiLineService;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,11 +25,8 @@ public class ApiLineServiceTest {
 
     @Before
     public void setUp() {
-        apiLineService = new ApiLineService();
-
-        restTemplate = mock(RestTemplate.class);
-
-        ReflectionTestUtils.setField(apiLineService, "restTemplate", restTemplate);
+        apiLineService = spy(ApiLineService.class);
+        apiLineService.restTemplate = mock(RestTemplate.class);
     }
 
     @Test
@@ -44,7 +40,7 @@ public class ApiLineServiceTest {
 
         ResponseEntity<List<LineDTO>> mockedResponseEntity = new ResponseEntity<>(mockedLines, HttpStatus.OK);
 
-        when(restTemplate.exchange(
+        when(apiLineService.restTemplate.exchange(
                 eq("http://localhost:8080/api/lines"),
                 eq(HttpMethod.GET),
                 isNull(),
@@ -59,7 +55,7 @@ public class ApiLineServiceTest {
         assertEquals(1, resultLines.get(0).getId());
         assertEquals("Line2", resultLines.get(0).getName());
 
-        verify(restTemplate).exchange(
+        verify(apiLineService.restTemplate).exchange(
                 eq("http://localhost:8080/api/lines"),
                 eq(HttpMethod.GET),
                 isNull(),
