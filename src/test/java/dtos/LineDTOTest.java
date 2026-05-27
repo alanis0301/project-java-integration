@@ -50,4 +50,14 @@ class LineDTOTest {
         String result = lineDTO.toString();
         assertEquals("Line1", result);
     }
+
+    @Test
+    void lineDTOtoStringTest(){
+        modelDTO =  new ModelDTO(1, "Model1");
+        categoryDTO = new CategoryDTO(1, "Category1", Arrays.asList(modelDTO));
+        lineDTO = new LineDTO(1, "Line1", Arrays.asList(categoryDTO));
+
+        String result = lineDTO.toString();
+        assertEquals("Line1", result);
+    }
 }
