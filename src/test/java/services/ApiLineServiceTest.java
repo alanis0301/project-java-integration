@@ -21,7 +21,6 @@ import static org.mockito.Mockito.*;
 public class ApiLineServiceTest {
 
     private ApiLineService apiLineService;
-    private RestTemplate restTemplate;
 
     @Before
     public void setUp() {

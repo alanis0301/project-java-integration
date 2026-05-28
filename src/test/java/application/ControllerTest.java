@@ -68,7 +68,7 @@ public class ControllerTest extends ApplicationTest {
 
 
         assertEquals(1, controller.comboLines.getItems().size());
-        assertEquals( "Line1", controller.comboLines.getItems().get(0).getName());
+        assertEquals("Line1", controller.comboLines.getItems().get(0).getName());
 
         verify(controller.apiLineService).getLines();
     }
@@ -101,6 +101,18 @@ public class ControllerTest extends ApplicationTest {
         controller.comboLines.getOnAction().handle(new ActionEvent());
 
         assertFalse(controller.paneModels.isDisable());
+    }
+
+    @Test
+    public void loadTreeTest() {
+        ModelDTO modelDTO = new ModelDTO(1, "Model1");
+        CategoryDTO categoryDTO = new CategoryDTO(1, "Category1", Arrays.asList(modelDTO));
+        LineDTO lineDTO = new LineDTO(1, "Line1", Arrays.asList(categoryDTO));
+
+        controller.configureComboEvent();
+        controller.comboLines.getItems().add(lineDTO);
+        controller.comboLines.setValue(lineDTO);
+        controller.comboLines.getOnAction().handle(new ActionEvent());
 
         TreeItem<String> root = controller.treeModels.getRoot();
         assertNotNull(root);

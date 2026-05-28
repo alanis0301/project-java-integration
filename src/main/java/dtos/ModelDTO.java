@@ -1,7 +1,5 @@
 package dtos;
 
-import org.springframework.beans.BeanUtils;
-
 public class ModelDTO {
     private int id;
     private String name;

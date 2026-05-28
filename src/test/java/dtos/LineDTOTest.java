@@ -7,7 +7,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class LineDTOTest {
