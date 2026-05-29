@@ -1,13 +1,21 @@
 package dtos;
 
-import org.springframework.beans.BeanUtils;
-
 import java.util.List;
 
 public class LineDTO {
     private int id;
     private String name;
     private List<CategoryDTO> categories;
+
+    public LineDTO(int id, String name, List<CategoryDTO> categories) {
+        this.id = id;
+        this.name = name;
+        this.categories = categories;
+    }
+
+    public LineDTO(){
+
+    }
 
     public int getId() {
         return id;

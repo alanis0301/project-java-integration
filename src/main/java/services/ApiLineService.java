@@ -12,8 +12,8 @@ import java.util.List;
 @Service
 public class ApiLineService {
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final String BASE_URL = "http://localhost:8080/api/lines";
+    protected RestTemplate restTemplate = new RestTemplate();
+    protected final String BASE_URL = "http://localhost:8080/api/lines";
 
     public List<LineDTO> getLines(){
         ResponseEntity<List<LineDTO>> response = restTemplate.exchange(BASE_URL, HttpMethod.GET,

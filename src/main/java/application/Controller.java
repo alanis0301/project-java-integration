@@ -21,15 +21,15 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    private ComboBox<LineDTO> comboLines;
+    protected ComboBox<LineDTO> comboLines;
 
     @FXML
-    private TreeView<String> treeModels;
+    protected TreeView<String> treeModels;
 
     @FXML
-    private TitledPane paneModels;
+    protected TitledPane paneModels;
 
-    private final ApiLineService apiLineService = new ApiLineService();
+    protected ApiLineService apiLineService = new ApiLineService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,7 +63,7 @@ public class Controller implements Initializable {
     });
     }
 
-    private void loadTree(LineDTO line) {
+    public void loadTree(LineDTO line) {
 
         TreeItem<String> root = new TreeItem<>("Categorias");
         root.setExpanded(true);
