@@ -63,7 +63,7 @@ public class Controller implements Initializable {
     });
     }
 
-    private void loadTree(LineDTO line) {
+    public void loadTree(LineDTO line) {
 
         TreeItem<String> root = new TreeItem<>("Categorias");
         root.setExpanded(true);

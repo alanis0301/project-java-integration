@@ -101,6 +101,7 @@ public class ControllerTest extends ApplicationTest {
         controller.comboLines.getOnAction().handle(new ActionEvent());
 
         assertFalse(controller.paneModels.isDisable());
+        verify(controller).loadTree(lineDTO);
     }
 
     @Test
@@ -123,5 +124,6 @@ public class ControllerTest extends ApplicationTest {
 
         TreeItem<String> modelItem = categoryItem.getChildren().get(0);
         assertEquals("Model1", modelItem.getValue());
+
     }
 }
