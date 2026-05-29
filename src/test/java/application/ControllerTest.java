@@ -81,8 +81,8 @@ public class ControllerTest extends ApplicationTest {
 
         assertNotNull(controller.comboLines.getItems());
         assertEquals(0, controller.comboLines.getItems().size());
-
-        verify(controller.apiLineService).getLines();
+        assertThrows(RuntimeException.class, () -> controller.apiLineService.getLines());
+        verify(controller.apiLineService, times(2)).getLines();
     }
 
     @Test
